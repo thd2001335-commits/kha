@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.treasurehunter.bot">
+
+    <!-- Quyền hiển thị nút tròn ảo nổi trên game -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- Quyền dịch vụ nền chụp màn hình -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <!-- Quyền rung phản hồi -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:label="Treasure Hunter Bot"
+        android:roundIcon="@android:drawable/ic_menu_compass"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <!-- Màn hình xin cấp quyền ban đầu -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Dịch vụ Nút Tròn Ảo Nổi -->
+        <service
+            android:name=".FloatingBubbleService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Dịch vụ Chụp Màn Hình Nền -->
+        <service
+            android:name=".ScreenCaptureService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
+
+        <!-- Dịch vụ Trợ Năng Tự Kéo Cần Gạt -->
+        <service
+            android:name=".TreasureHunterAccessibilityService"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+    </application>
+</manifest>

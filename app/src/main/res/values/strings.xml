@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Treasure Hunter Bot</string>
+    <string name="accessibility_desc">Dịch vụ tự động kéo cần gạt ảo để di chuyển trong game Treasure Hunter MMORPG.</string>
+</resources>
